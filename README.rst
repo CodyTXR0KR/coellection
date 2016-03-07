@@ -39,7 +39,7 @@ Install app in mysite/settings.py
 .. code-block:: python
     
     INSTALLED_APPS = [
-        # My apps
+        # This entry must be added
         'coellection',
         # Default django apps
         'django.contrib.admin',
@@ -55,10 +55,9 @@ Configure mysite/urls.py
 .. code-block:: python
 
     urlpatterns = [
-        # Admin cPanel
         url(r'^admin/', admin.site.urls),
-        # Landing page
-        url(r'^coellection/', include('coellection.urls') )
+        # Add the following url redirect
+        url(r'^coellection/', include('coellection.urls')),
     ]
 
 Make migrations and migrate database to create required tables.

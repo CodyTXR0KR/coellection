@@ -27,7 +27,8 @@ Including another URLconf
 """
 from django.conf.urls import *
 
-from .views import HomeView, GameDetail, GameIndex, GameFilter, PlatformDetail, PlatformIndex
+from .views import HomeView, GameDetail, GameIndex, GameFilter, \
+    PlatformDetail, PlatformIndex, AmiiboDetail, AmiiboIndex
 
 urlpatterns = [
     url(r'^$', HomeView.as_view(), name='coellection'),
@@ -35,4 +36,7 @@ urlpatterns = [
     url(r'^games/(?P<platform>[-\w]+)/$', GameFilter.as_view(), name='filter_games'),
     url(r'^game/(?P<pk>\d+)/$', GameDetail.as_view(), name='game'),
     url(r'^platforms/$', PlatformIndex.as_view(), name='platforms'),
+    url(r'^platform/(?P<pk>\d+)/$', PlatformDetail.as_view(), name='platform'),
+    url(r'^amiibos/$', AmiiboIndex.as_view(), name='amiibos'),
+    url(r'^amiibo/(?P<pk>\d+)/$', AmiiboDetail.as_view(), name='amiibo'),
 ]

@@ -72,8 +72,21 @@ class PlatformDetail(DetailView):
     model = Platform
 
 
-class PlatformIndex(PlatformMixin, ListView):
+class PlatformIndex(ListView):
     template_name = 'coellection/platform_list.html'
     model = Platform
     queryset = Platform.objects.all()
     context_object_name = 'platforms'
+
+
+class AmiiboDetail(DetailView):
+    template_name = 'coellection/amiibo.html'
+    context_object_name = 'amiibo'
+    model = Amiibo
+
+
+class AmiiboIndex(ListView):
+    template_name = 'coellection/amiibo_list.html'
+    model = Amiibo
+    queryset = Amiibo.objects.all()
+    context_object_name = 'amiibos'

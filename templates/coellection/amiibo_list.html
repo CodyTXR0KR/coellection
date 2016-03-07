@@ -2,23 +2,23 @@
 {% block content %}
 <!-- django extension coelection/game_list.html -->
 <div class="page-header">
-    <h2 style="display: inline;">Platforms</h2>
+    <h2 style="display: inline;">Amiibos</h2>
 </div>
 <table class="table table-bordered table-responsive shadow" style="margin: 2%; width: 96%;">
     <thead>
         <tr>
-            <th>System</th>
-            <th>Model</th>
-            <th>Works</th>
+            <th>Title</th>
+            <th>Box</th>
+            <th>Figure</th>
             <th>Donor</th>
         </tr>
     </thead>
-    {% for platform in platforms %}
+    {% for amiibo in amiibos %}
     <tr>
-        <td><a href="/coellection/platform/{{platform.id}}">{{platform.title}}</a></td>
-        <td>{{platform.model}}</td>
-        <td>{{platform.get_plays_display}}</td>
-        <td>{{platform.donor}}</td>
+        <td><a href="/coellection/amiibo/{{amiibo.id}}">{{amiibo.title}}</a></td>
+        <td>{{amiibo.get_box_display}}</td>
+        <td>{{amiibo.get_figure_display}}</td>
+        <td>{{amiibo.donor}}</td>
     </tr>
     {% endfor %}
 </table>
