@@ -71,3 +71,6 @@ migrations/
 
 # DB
 *.sqlite3
+
+# Temp directory
+tmp/

@@ -242,8 +242,10 @@ def make_game(platform, row_data):
         item.notes = 'Green label: {0}; {1}'.format(
             row_data['BL'], row_data['Notes'])
     elif platform == 'pc':
+        # encode/strip functions called to handle special (fraction) characters
         item.notes = 'Media Type: {0}; Box Type: {1}; {2}'.format(
-            row_data['M. Type'], row_data['B. Type'], row_data['Notes'])
+            row_data['M. Type'].encode('utf-8').strip(), row_data['B. Type'], 
+            row_data['Notes'].encode('utf-8').strip())
     else:
         item.notes = row_data['Notes']
     # Map 'DCvr' and 'Cover' to 'dust_cover'

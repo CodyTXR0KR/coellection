@@ -68,6 +68,9 @@ Make migrations and migrate database to create required tables.
     $ python manage.py makemigrations coellection
     $ python manage.py migrate
 
+    # Collect static files if running on production server
+    $ python manage.py collectstatic
+
 Populate the coellection tables from google doc spreadsheet.
 
 .. code-block:: bash
