@@ -1,0 +1,44 @@
+{% extends "coellection/header.html" %}
+{% block content %}
+<!-- django extension coelection/game.html -->
+<br>
+<div class="panel shadow">
+    <div class="panel-heading">
+        <h3 style="display: inline;">{{game.title}}</h3>
+        <span style="float: right;">{{game.get_platform_display}}</span>
+    </div>
+    <div class="panel-body">
+        UPC: {{game.upc}}<br>
+        <br>
+        <table class="table table-bordered table-responsive" style="width: 90%;">
+            <thead>
+                <tr>
+                    <th>Works</th>
+                    <th>Disc/Cart</th>
+                    <th>Label</th>
+                    <th>Cover</th>
+                    <th>Box</th>
+                    <th>Manual</th>
+                    <th>Insert</th>
+                    <th>Battery</th>
+                </tr>
+            </thead>
+            <tr>
+                <td>{{game.get_plays_display}}</td>
+                <td>{{game.get_media_cond_display}}</td>
+                <td>{{game.get_label_display}}</td>
+                <td>{{game.get_dust_cover_display}}</td>
+                <td>{{game.get_box_display}}</td>
+                <td>{{game.get_manual_display}}</td>
+                <td>{{game.get_insert_display}}</td>
+                <td>{{game.get_battery_display}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="panel-footer">
+        Notes: {{game.notes}}
+        <span style="float: right;">Donated By: {{game.donor}}</span>
+    </div>
+</div>
+<!-- end django extension -->
+{% endblock %}

@@ -1,0 +1,20 @@
+{% block content_list %}
+<!-- django include coelection/includes/platforms.html -->
+<div class="btn-group" style="position: relative; float: right;">
+    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">Filter by Platform
+        <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-right">
+        {% for platform in platforms %}
+            <li>
+                <a href="/coellection/games/{{platform}}" style="padding: 6px;">
+                    <span style="font-size: 10pt;">{{platform}}</span>
+                </a>
+            </li> 
+        {% empty %}
+            <li>No Platforms</li>
+        {% endfor %}
+    </ul>
+</div>
+<!-- end django include -->
+{% endblock %}

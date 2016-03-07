@@ -1,0 +1,28 @@
+{% extends "coellection/header.html" %}
+{% block content %}
+<!-- django extension coelection/game_list.html -->
+<div class="page-header">
+    <h2 style="display: inline;">Games</h2>
+    {% include 'coellection/includes/platforms.html' %}
+</div>
+<table class="table table-bordered table-responsive shadow" style="margin: 2%; width: 96%;">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Platform</th>
+            <th>Works</th>
+            <th>Donor</th>
+        </tr>
+    </thead>
+    {% for game in games %}
+    <tr>
+        <td><a href="/coellection/game/{{game.id}}">{{game.title}}</a></td>
+        <td>{{game.get_platform_display}}</td>
+        <td>{{game.get_plays_display}}</td>
+        <td>{{game.donor}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% include 'coellection/includes/pagination.html' %}
+<!-- end django extension -->
+{% endblock %}

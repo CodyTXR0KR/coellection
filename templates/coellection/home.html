@@ -1,0 +1,46 @@
+{% extends "coellection/header.html" %}
+{% load staticfiles %}
+{% block content %}
+<!-- django extension coelection/home.html -->
+<br><br>
+<div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-4">
+        <a href="games" style="text-decoration: none;">
+        <div class="panel shadow">
+            <div class="panel-heading">
+                <h3>Games</h3>
+            </div>
+            <div class="panel-body"
+                style="height: 300px;
+                       background-image: url('{% static 'images/games.png' %}'); 
+                       background-size: cover; 
+                       margin-top: 5px">
+            </div>
+            <div class="panel-footer" style="height: 30px;">
+                <span class="badge badge-inverse"> {{ view.game_count }} game(s)</span>
+            </div>
+        </div>
+        </a>
+    </div>
+    <div class="col-sm-4">
+        <a href="platforms" style="text-decoration: none;">
+        <div class="panel shadow">
+            <div class="panel-heading">
+                <h3>Platforms</h3>
+            </div>
+            <div class="panel-body" 
+                style="height: 300px;
+                       background-image: url('{% static 'images/platforms.png' %}'); 
+                       background-size: cover; 
+                       margin-top: 5px">
+            </div>
+            <div class="panel-footer" style="height: 30px;">
+                <span class="badge badge-inverse"> {{ view.platform_count }} system(s)</span>
+            </div>
+        </div>
+        </a>
+    </div>
+</div>
+<!-- end django extension -->
+{% endblock %}

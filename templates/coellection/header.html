@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="eng">
+
+<head>
+    <title>The Coe-llection</title>
+    <meta charset="utf-8" />
+    {% load staticfiles %}
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+
+    <script src="https://code.jquery.com/jquery.js"></script>
+
+    <!-- Bootstrap -->
+    <link rel='stylesheet' href="{% static 'css/bootstrap.min.css' %}" type='text/css' />
+    <link rel='stylesheet' href="{% static 'css/coellection.css' %}" type='text/css' />
+    <script src="{% static 'js/bootstrap.min.js' %}" type="text/javascript"></script>
+
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Orbitron:900' rel='stylesheet' type='text/css'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+    html, body {
+      height: 105%;
+      margin: 0;
+    }
+    </style>
+</head>
+
+<body class="body" style="background-color:#191919;">
+    <header>
+        <div class="container-fluid shadow" style="background-color: #272822; color: #337AB7; padding-bottom: 10px;">
+            <br>
+            <img src="{% static 'images/coestar.png' %}" style="width: 50px; height: 50px; border: 2px solid #337AB7; margin: -15px 10px -5px -5px;">
+            <h1 style="font-family: 'Orbitron', sans-serif; font-size: 3em; margin-bottom: -10px; display: inline;">
+                <a href="/coellection/" style="text-decoration: none;">The Coe-llection</a>
+            </h1>
+            <!-- nav buttons -->
+            <div class="btn-group" role="group" style="float: right;">
+                <a href="/coellection/games/" data-toggle="tooltip" data-placement="bottom" title="Games"
+                    <button type="button" class="btn btn-primary navbar-btn" style="margin-left:2px; margin-top:10px">
+                    <span class="glyphicon glyphicon-cd" aria-hidden="true">
+                    </span>
+                    </button>
+                </a>
+                <a href="/coellection/platforms/" data-toggle="tooltip" data-placement="bottom" title="Platforms"
+                    <button type="button" class="btn btn-primary navbar-btn" style="margin-left:2px; margin-top:10px">
+                    <span class="glyphicon glyphicon-hdd" aria-hidden="true">
+                    </span>
+                    </button>
+                </a>
+            </div>
+        </div>
+    </header>
+    <div class="container-fluid" style="min-height:80%;" />
+        {% block content %}
+        {% endblock %}
+    </div>
+    <footer>
+        <div class="container-fluid" style="margin-left:15px">
+            <center>
+                <div class="row">
+                    <h2>
+                    <!-- social buttons -->
+                    <a href="https://github.com/CodyTXR0KR" style="text-decoration: none" data-toggle="tooltip" data-placement="bottom">
+                        <span class="icon-github" aria-hidden="true" title="Github"></span>
+                    </a>  
+                    <a href="https://www.linkedin.com/in/cody-rocker-7021a5103" style="text-decoration: none" data-toggle="tooltip" data-placement="bottom">
+                        <span class="icon-linkedin" aria-hidden="true" title="Linkedin"></span>
+                    </a>  
+                    <a href="https://twitter.com/@cody_rocker" style="text-decoration: none" data-toggle="tooltip" data-placement="bottom">
+                        <span class="icon-twitter" aria-hidden="true" title="Twitter"></span>
+                    </a>  
+                    <a href="https://plus.google.com/116380484898555498106/" style="text-decoration: none" data-toggle="tooltip" data-placement="bottom">
+                        <span class="icon-google-plus" aria-hidden="true" title="Google+"></span>
+                    </a>
+                    </h2>
+                </div>
+                <div style="font-style: italic; font-size: 8pt; color: #989898;">
+                    <p>&copy; Cody Rocker 2016</p>
+                </div>
+            </center>
+        </div>
+    </footer>
+</body>
+
+</html>
