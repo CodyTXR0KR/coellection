@@ -1,0 +1,72 @@
+{% extends "coellection/header.html" %}
+{% block content %}
+<!-- django extension coelection/game_list.html -->
+<div class="page-header">
+    <h2 style="display: inline;">Search</h2>
+</div>
+<!-- Games -->
+{% if games %}
+<table class="table table-bordered table-responsive shadow" style="margin: 2%; width: 96%;">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Platform</th>
+            <th>Works</th>
+            <th>Donor</th>
+        </tr>
+    </thead>
+    {% for game in games %}
+    <tr>
+        <td><a href="/coellection/game/{{game.id}}">{{game.title}}</a></td>
+        <td>{{game.get_platform_display}}</td>
+        <td>{{game.get_plays_display}}</td>
+        <td>{{game.donor}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+<!-- Platforms -->
+{% if platforms %}
+<table class="table table-bordered table-responsive shadow" style="margin: 2%; width: 96%;">
+    <thead>
+        <tr>
+            <th>System</th>
+            <th>Model</th>
+            <th>Works</th>
+            <th>Donor</th>
+        </tr>
+    </thead>
+    {% for platform in platforms %}
+    <tr>
+        <td><a href="/coellection/platform/{{platform.id}}">{{platform.title}}</a></td>
+        <td>{{platform.model}}</td>
+        <td>{{platform.get_plays_display}}</td>
+        <td>{{platform.donor}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+<!-- Amiibos -->
+{% if amiibos %}
+<table class="table table-bordered table-responsive shadow" style="margin: 2%; width: 96%;">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Box</th>
+            <th>Figure</th>
+            <th>Donor</th>
+        </tr>
+    </thead>
+    {% for amiibo in amiibos %}
+    <tr>
+        <td><a href="/coellection/amiibo/{{amiibo.id}}">{{amiibo.title}}</a></td>
+        <td>{{amiibo.get_box_display}}</td>
+        <td>{{amiibo.get_figure_display}}</td>
+        <td>{{amiibo.donor}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+{% include 'coellection/includes/pagination.html' %}
+<!-- end django extension -->
+{% endblock %}

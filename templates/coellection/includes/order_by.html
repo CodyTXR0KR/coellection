@@ -1,0 +1,26 @@
+{% block content_list %}
+<!-- django include coelection/includes/order_by.html -->
+<div class="btn-group" style="position: relative; float: right;">
+    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">Sort
+        <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-right">
+        <li>
+            <a href="#" style="padding: 6px;">
+                <span style="font-size: 10pt;">Alphabetical</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" style="padding: 6px;">
+                <span style="font-size: 10pt;">Platform</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" style="padding: 6px;">
+                <span style="font-size: 10pt;">Donor</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<!-- end django include -->
+{% endblock %}

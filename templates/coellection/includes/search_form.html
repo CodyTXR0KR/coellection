@@ -1,0 +1,14 @@
+{% block content %}
+<!-- django include coelection/includes/search_form.html -->
+    <div class="input-group">
+        <form class="form-inline" action="/coellection/search/" method="GET">
+            <span class="input-group-btn" style="display: inline; margin-right: 1px;">
+                <button class="btn btn-sm btn-primary" type="submit" value="OK">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true">
+                </button>
+            </span>
+            <input id="query" style="height: 30px;  width: 250px;" type="text" name="query" value="{{ query }}"placeholder=" Search by Title or Donor...">
+        </form>
+    </div>
+<!-- end django include -->
+{% endblock %}

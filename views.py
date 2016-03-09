@@ -10,11 +10,14 @@
 #    - xlrd 0.9.4                """
 #    - Django 1.9.3              """
 #-----------------------------------
+from django.db.models import Q
+from django.shortcuts import render
+from django.http import HttpResponse
 from django.views.generic import TemplateView, DetailView, ListView
 
 from .models import Platform, Game, Amiibo
 from .choices import PLATFORM_CHOICES
-
+from .forms import SearchForm
 
 class PlatformMixin(object):
     def get_context_data(self, **kwargs):
@@ -90,3 +93,24 @@ class AmiiboIndex(ListView):
     model = Amiibo
     queryset = Amiibo.objects.all()
     context_object_name = 'amiibos'
+
+
+""" Database Search """
+
+
+def search(request):
+    if 'query' in request.GET and request.GET['query']:
+        query = request.GET['query'].strip()
+        games = Game.objects.filter(
+            Q(title__icontains=query) | 
+            Q(donor__icontains=query)).order_by('title')
+        platforms = Platform.objects.filter(
+            Q(title__icontains=query) |
+            Q(donor__icontains=query)).order_by('title')
+        amiibos = Amiibo.objects.filter(
+            Q(title__icontains=query) |
+            Q(donor__icontains=query)).order_by('title')
+        return render(request, 'coellection/search_results.html',
+            {'games': games, 'platforms': platforms, 'amiibos': amiibos, 'query': query})
+    else:
+        return HttpResponse('Please submit a search term.')

@@ -1,3 +1,11 @@
+/* Palette
+  #191919 - dark grey (pg bg)
+  #272822 - med grey (header bg, panels)
+  #989898 - lt grey (text)
+  #337AB7 - blue (bootstrap primary)
+*/
+
+
 /* Icomoon elements */
 @font-face {
     font-family: 'icomoon';
@@ -227,4 +235,12 @@
     border-left-color: #337AB7;
     border-right-color: #337AB7;
     border-bottom-color: #337AB7;
+}
+
+.form-inline>input {
+  margin: 10px 15px 0px 0px;
+  padding-left: 10px;
+  background-color: #191919;
+  border-style: none;
+  border-bottom: 1px solid #989898;
 }
