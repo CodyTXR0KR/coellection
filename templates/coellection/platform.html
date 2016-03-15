@@ -1,7 +1,10 @@
 {% extends "coellection/header.html" %}
 {% block content %}
 <!-- django extension coelection/game.html -->
-<br>
+<div class="page-header">
+    <h2 style="display: inline;">Detail</h2>
+</div>
+{% for platform in platforms %}
 <div class="panel shadow">
     <div class="panel-heading">
         <h3 style="display: inline;">{{platform.title}}</h3>
@@ -39,5 +42,6 @@
         <span style="float: right;">Donated By: {{platform.donor}}</span>
     </div>
 </div>
+{% endfor %}
 <!-- end django extension -->
 {% endblock %}

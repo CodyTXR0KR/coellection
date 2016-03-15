@@ -10,6 +10,8 @@
 #    - xlrd 0.9.4                """
 #    - Django 1.9.3              """
 #-----------------------------------
+import operator
+
 from django.db.models import Q
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -22,7 +24,7 @@ from .forms import SearchForm
 class PlatformMixin(object):
     def get_context_data(self, **kwargs):
         context = super(PlatformMixin, self).get_context_data(**kwargs)
-        game_objects = Game.objects.all()
+        game_objects = Game.objects.all().order_by('platform')
         unique_platforms = game_objects.values('platform').distinct()
         unique_platforms_verbose = []
         for item in unique_platforms:
@@ -35,6 +37,25 @@ class HomeView(TemplateView):
     template_name = 'coellection/home.html'
     context = {}
 
+    def contributors(self):
+        return donor_list()
+
+    def top_donor(self):
+        donors = donor_list()
+        leaderboard = {}
+        for donor in donors:
+            count = 0
+            games = Game.objects.filter(donor=donor)
+            count += games.count()
+            platforms = Platform.objects.filter(donor=donor)
+            count += platforms.count()
+            amiibos = Amiibo.objects.filter(donor=donor)
+            count += amiibos.count()
+            leaderboard[donor] = count
+
+        top_donor = max(leaderboard.items(), key=operator.itemgetter(1))[0]
+        return top_donor + ' ' + str(leaderboard[top_donor])
+
     def game_count(self):
         return Game.objects.count()
 
@@ -45,11 +66,13 @@ class HomeView(TemplateView):
         return Amiibo.objects.count()
 
 
-class GameDetail(DetailView):
+class GameDetail(ListView):
     template_name = 'coellection/game.html'
-    context_object_name = 'game'
+    context_object_name = 'games'
     model = Game
 
+    def get_queryset(self):
+        return Game.objects.filter(slug=self.kwargs.get('slug'))
 
 class GameIndex(PlatformMixin, ListView):
     template_name = 'coellection/game_list.html'
@@ -66,13 +89,19 @@ class GameFilter(PlatformMixin, ListView):
     context_object_name = 'games'
 
     def get_queryset(self):
-        return Game.objects.filter(platform=self.kwargs.get('platform'))
+        if self.kwargs.get('platform'):
+            return Game.objects.filter(platform=self.kwargs.get('platform'))
+        elif self.kwargs.get('arg'):
+            return Game.objects.filter(title__startswith=self.kwargs.get('arg'))
 
 
-class PlatformDetail(DetailView):
+class PlatformDetail(ListView):
     template_name = 'coellection/platform.html'
-    context_object_name = 'platform'
+    context_object_name = 'platforms'
     model = Platform
+
+    def get_queryset(self):
+        return Platform.objects.filter(slug=self.kwargs.get('slug'))
 
 
 class PlatformIndex(ListView):
@@ -82,11 +111,13 @@ class PlatformIndex(ListView):
     context_object_name = 'platforms'
 
 
-class AmiiboDetail(DetailView):
+class AmiiboDetail(ListView):
     template_name = 'coellection/amiibo.html'
-    context_object_name = 'amiibo'
+    context_object_name = 'amiibos'
     model = Amiibo
 
+    def get_queryset(self):
+        return Amiibo.objects.filter(slug=self.kwargs.get('slug'))
 
 class AmiiboIndex(ListView):
     template_name = 'coellection/amiibo_list.html'
@@ -114,3 +145,25 @@ def search(request):
             {'games': games, 'platforms': platforms, 'amiibos': amiibos, 'query': query})
     else:
         return HttpResponse('Please submit a search term.')
+
+
+def donor_list():
+    unique_donors = set()
+    game_objects = Game.objects.all()
+    game_donors = game_objects.values('donor').distinct()
+    platform_objects = Platform.objects.all()
+    platform_donors = platform_objects.values('donor').distinct()
+    amiibo_objects = Amiibo.objects.all()
+    amiibo_donors = amiibo_objects.values('donor').distinct()
+
+    for donor in game_donors:
+        # print(donor['donor'])
+        unique_donors.add(donor['donor'])
+    for donor in platform_donors:
+        # print(donor['donor'])
+        unique_donors.add(donor['donor'])
+    for donor in amiibo_donors:
+        # print(donor['donor'])
+        unique_donors.add(donor['donor'])
+    unique_donors.remove('')
+    return unique_donors

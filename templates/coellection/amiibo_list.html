@@ -15,7 +15,7 @@
     </thead>
     {% for amiibo in amiibos %}
     <tr>
-        <td><a href="/coellection/amiibo/{{amiibo.id}}">{{amiibo.title}}</a></td>
+        <td><a href="/coellection/amiibo/{{amiibo.slug}}">{{amiibo.title}}</a></td>
         <td>{{amiibo.get_box_display}}</td>
         <td>{{amiibo.get_figure_display}}</td>
         <td>{{amiibo.donor}}</td>

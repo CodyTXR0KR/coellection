@@ -1,7 +1,10 @@
 {% extends "coellection/header.html" %}
 {% block content %}
 <!-- django extension coelection/game.html -->
-<br>
+<div class="page-header">
+    <h2 style="display: inline;">Detail</h2>
+</div>
+{% for amiibo in amiibos %}
 <div class="panel shadow">
     <div class="panel-heading">
         <h3 style="display: inline;">{{amiibo.title}}</h3>
@@ -29,5 +32,6 @@
         <span style="float: right;">Donated By: {{amiibo.donor}}</span>
     </div>
 </div>
+{% endfor %}
 <!-- end django extension -->
 {% endblock %}

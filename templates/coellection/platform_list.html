@@ -15,7 +15,7 @@
     </thead>
     {% for platform in platforms %}
     <tr>
-        <td><a href="/coellection/platform/{{platform.id}}">{{platform.title}}</a></td>
+        <td><a href="/coellection/platform/{{platform.slug}}">{{platform.title}}</a></td>
         <td>{{platform.model}}</td>
         <td>{{platform.get_plays_display}}</td>
         <td>{{platform.donor}}</td>

@@ -6,6 +6,9 @@
     {% include 'coellection/includes/platforms.html' %}
     {#% include 'coellection/includes/order_by.html' %#}
 </div>
+<center>
+{% include 'coellection/includes/alpha_filter.html' %}
+</center>
 <table class="table table-bordered table-responsive shadow" style="margin: 2%; width: 96%;">
     <thead>
         <tr>
@@ -17,7 +20,7 @@
     </thead>
     {% for game in games %}
     <tr>
-        <td><a href="/coellection/game/{{game.id}}">{{game.title}}</a></td>
+        <td><a href="/coellection/game/{{game.slug}}">{{game.title}}</a></td>
         <td>{{game.get_platform_display}}</td>
         <td>{{game.get_plays_display}}</td>
         <td>{{game.donor}}</td>

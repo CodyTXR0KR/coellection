@@ -269,5 +269,5 @@ def make_game(platform, row_data):
         sys.stdout.flush()
     except Exception as e:
         # dump values for debug on exception
-        sys.stdout.write('key={0}; row={1};\n{2}'.format(key, row_data, e))
+        sys.stdout.write('key={0}; row={1};\n{2}'.format(platform, row_data, e))
         sys.exit(1)

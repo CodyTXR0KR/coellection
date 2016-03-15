@@ -6,6 +6,7 @@
 </div>
 <!-- Games -->
 {% if games %}
+<h2>Games</h2>
 <table class="table table-bordered table-responsive shadow" style="margin: 2%; width: 96%;">
     <thead>
         <tr>
@@ -17,7 +18,7 @@
     </thead>
     {% for game in games %}
     <tr>
-        <td><a href="/coellection/game/{{game.id}}">{{game.title}}</a></td>
+        <td><a href="/coellection/game/{{game.slug}}">{{game.title}}</a></td>
         <td>{{game.get_platform_display}}</td>
         <td>{{game.get_plays_display}}</td>
         <td>{{game.donor}}</td>
@@ -27,6 +28,7 @@
 {% endif %}
 <!-- Platforms -->
 {% if platforms %}
+<h2>Platforms</h2>
 <table class="table table-bordered table-responsive shadow" style="margin: 2%; width: 96%;">
     <thead>
         <tr>
@@ -38,7 +40,7 @@
     </thead>
     {% for platform in platforms %}
     <tr>
-        <td><a href="/coellection/platform/{{platform.id}}">{{platform.title}}</a></td>
+        <td><a href="/coellection/platform/{{platform.slug}}">{{platform.title}}</a></td>
         <td>{{platform.model}}</td>
         <td>{{platform.get_plays_display}}</td>
         <td>{{platform.donor}}</td>
@@ -48,6 +50,7 @@
 {% endif %}
 <!-- Amiibos -->
 {% if amiibos %}
+<h2>Amiibos</h2>
 <table class="table table-bordered table-responsive shadow" style="margin: 2%; width: 96%;">
     <thead>
         <tr>
@@ -59,7 +62,7 @@
     </thead>
     {% for amiibo in amiibos %}
     <tr>
-        <td><a href="/coellection/amiibo/{{amiibo.id}}">{{amiibo.title}}</a></td>
+        <td><a href="/coellection/amiibo/{{amiibo.slug}}">{{amiibo.title}}</a></td>
         <td>{{amiibo.get_box_display}}</td>
         <td>{{amiibo.get_figure_display}}</td>
         <td>{{amiibo.donor}}</td>

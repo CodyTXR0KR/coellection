@@ -2,7 +2,10 @@
 {% load staticfiles %}
 {% block content %}
 <!-- django extension coelection/home.html -->
-<br><br>
+<div class="page-header">
+    <h2 style="display: inline;">Top Donor:</h2>
+        <span style="font-size: 14pt;">{{ view.top_donor }} donations</span>
+</div>
 <div class="row" style="margin-top: 15px;">
     <div class="col-sm-4">
         <a href="/coellection/games" style="text-decoration: none;">
@@ -59,5 +62,12 @@
         </a>
     </div>
 </div>
+<center>
+    <h3>Thanks to all who have donated!</h3>
+    {% for donor in view.contributors %}
+    | {{ donor }}
+    {% endfor %}
+    |
+</center>
 <!-- end django extension -->
 {% endblock %}
