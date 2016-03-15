@@ -197,7 +197,7 @@ def make_platform(row_data):
         sys.stdout.flush()
     except Exception as e:
         # dump values for debug on exception
-        sys.stdout.write('key={0}; row={1};\n{2}'.format(key, row, e))
+        sys.stdout.write('row={0};\n{2}'.format(row_data, e))
         sys.exit(1)
 
 
@@ -218,7 +218,7 @@ def make_amiibo(row_data):
         sys.stdout.flush()
     except Exception as e:
         # dump values for debug on exception
-        sys.stdout.write('key={0}; row={1};\n{2}'.format(key, row_data, e))
+        sys.stdout.write('row={0};\n{1}'.format(row_data, e))
         sys.exit(1)
 
 
