@@ -1,6 +1,7 @@
 Coellection for Django 1.9
 ==========================
 A front end web-app for google docs spreadsheet
+This project demo lives at `cody-rocker.ddns.net <https://cody-rocker.ddns.net/coellection>`_
 
 :Developer:
     `Cody Rocker <mailto:cody.rocker.83@gmail.com>`_.
@@ -20,7 +21,7 @@ Move into the top level of your django environment and run the following.
 .. code-block:: bash
     
     # Clone repo
-    $ git clone https://github.com/CodyTXR0KR/coellection
+    $ git clone https://github.com/cody-rocker/coellection
 
     # Resulting structure should be:
     #   /mysite
