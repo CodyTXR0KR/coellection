@@ -3,7 +3,7 @@
 {% block content %}
 <!-- django extension coelection/home.html -->
 <div class="page-header">
-    <h2 style="display: inline;">Top Donor: </h2>
+    <h2 style="display: inline;">Top Donor:</h2>
         <span style="font-size: 14pt;">{{ view.top_donor }} donations</span>
 </div>
 <div class="row" style="margin-top: 15px;">
@@ -15,8 +15,8 @@
             </div>
             <div class="panel-body"
                 style="height: 300px;
-                       background-image: url('{% static 'images/games.png' %}'); 
-                       background-size: cover; 
+                       background-image: url('{% static 'images/games.png' %}');
+                       background-size: cover;
                        margin-top: 5px">
             </div>
             <div class="panel-footer" style="height: 30px;">
@@ -31,10 +31,10 @@
             <div class="panel-heading">
                 <h3>Platforms</h3>
             </div>
-            <div class="panel-body" 
+            <div class="panel-body"
                 style="height: 300px;
-                       background-image: url('{% static 'images/platforms.png' %}'); 
-                       background-size: cover; 
+                       background-image: url('{% static 'images/platforms.png' %}');
+                       background-size: cover;
                        margin-top: 5px">
             </div>
             <div class="panel-footer" style="height: 30px;">
@@ -49,10 +49,10 @@
             <div class="panel-heading">
                 <h3>Amiibos</h3>
             </div>
-            <div class="panel-body" 
+            <div class="panel-body"
                 style="height: 300px;
-                       background-image: url('{% static 'images/amiibos.png' %}'); 
-                       background-size: cover; 
+                       background-image: url('{% static 'images/amiibos.png' %}');
+                       background-size: cover;
                        margin-top: 5px">
             </div>
             <div class="panel-footer" style="height: 30px;">
@@ -62,10 +62,23 @@
         </a>
     </div>
 </div>
+<!-- There's probably a better way to dynamically generate these links -->
+<script type="text/javascript">
+    function donorOutput(input) {
+        var donor = input;
+        if (donor.startsWith("@")) {
+            var url = "https://twitter.com/" + donor.slice(1);
+            return donor.link(url);
+        };
+        return donor;
+    }
+</script>
 <center>
     <h3>Thanks to all who have donated!</h3>
     {% for donor in view.contributors %}
-    | {{ donor }}
+    | <script>
+        document.write(donorOutput("{{ donor }}"));
+      </script>
     {% endfor %}
     |
 </center>
