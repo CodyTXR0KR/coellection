@@ -24,7 +24,8 @@ from .filters import *
 
 PARAM_ERR =  '{func_name} -- Unknown param: {param_value};'
 
-# TODO: Take a url arg from command line and handle conversion to json file programatically.
+# TODO: Take a url arg from command line and handle conversion to json
+#       file programatically.
 ##          -- pull down xlsx from url
 ##          -- convert xlsx to json (modules/py_xls_to_json) & save to tmp
 ##          -- clean db
@@ -32,29 +33,30 @@ PARAM_ERR =  '{func_name} -- Unknown param: {param_value};'
 
 
 ## Make this script available to the manage.py interface
-## this handles loading all django settings, models, etc. 
+## this handles loading all django settings, models, etc.
 class Command(BaseCommand):
-    help = 'Pull down coellection google doc into django database.'        
+    help = 'Pull down coellection google doc into django database.'
 
     def handle(self, *args, **options):
-        """ Worker method, handles manage.py interface functionality 
+        """ Worker method, handles manage.py interface functionality
         """
         fetch_spreadsheet()
         make_json()
         coellection_json = load_json()
 
-        """ NOTE: To avoid possible downtime/dataloss on process failure the db should be 
-                  cloned and stored here as a restoration point. This is best handled by 
-                  hooking into the DB backend directly in a separate script and called here.
+        """ NOTE: To avoid possible downtime/dataloss on process failure the
+                  db should be cloned and stored here as a restoration point.
+                  This is best handled by hooking into the DB backend directly
+                  in a separate script and called here.
 
-                  Since this is heavily dependant on the deployment backend it's up to the 
-                  user to implement this to suit thier own environment.
+                  Since this is heavily dependant on the deployment backend it's
+                  up to the user to implement this to suit thier own environment.
         """
         clear_old_models()
 
 
-        """ New models are created here. This can take awhile if there are a lot of rows
-            of data to parse.
+        """ New models are created here. This can take awhile if there are a lot
+            of rows of data to parse.
         """
         sys.stdout.write('\nRebuilding tables with fresh data...\n')
         # 'key' value is the name of the sheet in the xls 'book'
@@ -76,7 +78,7 @@ class Command(BaseCommand):
 
 
 def load_json():
-    """ Return json data from disk as dict 
+    """ Return json data from disk as dict
     """
     with open(JSON_FILE, 'r') as f:
         json_data = json.load(f)
@@ -85,7 +87,7 @@ def load_json():
 
 
 def clear_old_models():
-    """ Since diff comparison between updates isn't implemented the db 
+    """ Since diff comparison between updates isn't implemented the db
         (Coellection models only) is wiped to avoid duplication of data.
     """
     # Objects are deleted, but the tables stay intact for repopulation
@@ -101,7 +103,7 @@ def clear_old_models():
 
 
 def get_bool(value):
-    """ Convert string to bool 
+    """ Convert string to bool
     """
     if value == 'Yes':
         return True
@@ -113,7 +115,7 @@ def get_bool(value):
 
 
 def get_plays(value):
-    """ Convert string to integer 
+    """ Convert string to integer
     """
     if value in PLAYS:
         return PLAYS[value]
@@ -123,7 +125,7 @@ def get_plays(value):
 
 
 def get_condition(value):
-    """ Convert string to integer 
+    """ Convert string to integer
     """
     if value in CONDITIONS:
         return CONDITIONS[value]
@@ -133,7 +135,7 @@ def get_condition(value):
 
 
 def get_platform(value):
-    """ Convert string to db slug 
+    """ Convert string to db slug
     """
     if value in PLATFORMS:
         return PLATFORMS[value]
@@ -143,7 +145,7 @@ def get_platform(value):
 
 
 def get_cart_batt_cond(value):
-    """ Convert string to integer 
+    """ Convert string to integer
     """
     if value is None:
         return 0
@@ -159,7 +161,7 @@ def get_cart_batt_cond(value):
 ## The django db models refactor ['Cart', 'Disc(s)', 'UMD', 'Media'] table headers to 'media_cond'
 ## so platform specific filering/handling is used to return appropriate values
 def get_media_cond(platform, row):
-    """ Return an integer for media_cond model property 
+    """ Return an integer for media_cond model property
     """
     if platform in CARTS:
         return get_condition(row['Cart'])
@@ -175,7 +177,7 @@ def get_media_cond(platform, row):
 
 
 def make_platform(row_data):
-    """ Map row_data to new django platform model object 
+    """ Map row_data to new django platform model object
     """
     item = Platform(
         title=row_data['Title'],
@@ -202,7 +204,7 @@ def make_platform(row_data):
 
 
 def make_amiibo(row_data):
-    """ Map row_data to new django amiibo model object 
+    """ Map row_data to new django amiibo model object
     """
     item = Amiibo(
         title=row_data['Title'],
@@ -223,11 +225,11 @@ def make_amiibo(row_data):
 
 
 def make_game(platform, row_data):
-    """ Map row_data to new django game model object 
+    """ Map row_data to new django game model object
     """
     item = Game(
         title =row_data['Title'],
-        platform=platform, 
+        platform=platform,
         upc=row_data['UPC'],
         donor=row_data['Donor'],
         plays=get_plays(row_data['Plys']),
@@ -244,7 +246,7 @@ def make_game(platform, row_data):
     elif platform == 'pc':
         # encode/strip functions called to handle special (fraction) characters
         item.notes = 'Media Type: {0}; Box Type: {1}; {2}'.format(
-            row_data['M. Type'].encode('utf-8').strip(), row_data['B. Type'], 
+            row_data['M. Type'].encode('utf-8').strip(), row_data['B. Type'],
             row_data['Notes'].encode('utf-8').strip())
     else:
         item.notes = row_data['Notes']

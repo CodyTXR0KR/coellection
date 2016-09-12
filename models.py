@@ -24,7 +24,7 @@ class Platform(models.Model):
     serial = models.CharField(max_length=64, blank=True)
     model = models.CharField(max_length=64, blank=True)
     modded = models.BooleanField(default=False)
-    slug = models.SlugField(default='', editable=False)
+    slug = models.SlugField(default='', max_length=64, editable=False)
 
     # Conditional ratings
     plays = models.IntegerField(verbose_name='Works', choices=PLAYS_CHOICES, default=2)
@@ -46,7 +46,7 @@ class Platform(models.Model):
         return reverse('platform', kwargs=kwargs)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
+        self.slug = slugify(self.title[:64])
         super(Platform, self).save(*args, **kwargs)
 
 
@@ -55,7 +55,7 @@ class Game(models.Model):
     title = models.CharField(max_length=140)
     platform = models.CharField(max_length=32, verbose_name='Platform', choices=PLATFORM_CHOICES)
     upc = models.CharField(verbose_name='UPC', max_length=64, blank=True)
-    slug = models.SlugField(default='', editable=False)
+    slug = models.SlugField(default='', max_length=64, editable=False)
 
     # Conditional ratings
     plays = models.IntegerField(verbose_name='Works', choices=PLAYS_CHOICES, default=2)
@@ -80,7 +80,7 @@ class Game(models.Model):
         return reverse('game', kwargs=kwargs)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
+        self.slug = slugify(self.title[:64])
         super(Game, self).save(*args, **kwargs)
 
 
@@ -88,7 +88,7 @@ class Amiibo(models.Model):
     # Basic info
     title = models.CharField(max_length=140)
     upc = models.CharField(verbose_name='UPC', max_length=32, blank=True)
-    slug = models.SlugField(default='', editable=False)
+    slug = models.SlugField(default='', max_length=64, editable=False)
 
     # Conditional ratings
     plays = models.IntegerField(verbose_name='Works', choices=PLAYS_CHOICES, default=2)
@@ -107,5 +107,5 @@ class Amiibo(models.Model):
         return reverse('amiibo', kwargs=kwargs)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
+        self.slug = slugify(self.title[:64])
         super(Amiibo, self).save(*args, **kwargs)
