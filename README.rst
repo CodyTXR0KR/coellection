@@ -1,7 +1,9 @@
 Coellection for Django 1.9
 ==========================
-A front end web-app for google docs spreadsheet
-This project demo lives at `cody-rocker.ddns.net <https://cody-rocker.ddns.net/coellection>`_
+..
+
+    A front end web-app for google docs spreadsheet
+    This project demo lives at `cody-rocker.ddns.net <https://cody-rocker.ddns.net/coellection>`_
 
 :Developer:
     `Cody Rocker <mailto:cody.rocker.83@gmail.com>`_.
