@@ -6,17 +6,14 @@
 <div class="page-header">
     <!-- TODO: make this one dynamic (linked) div -->
     <h2 style="display: inline;">Top Donor : </h2>
-        <span id="top_donor" style="font-size: 14pt;">
-            <img id="avatar"
-                 style="height: 32px;
-                        border-radius: 25px;
-                        border: 2px solid #989898;
-                        margin-bottom: 5px;">
+        <span id="top_donor" style="font-size: 16pt;">
+            <img id="avatar">
         </span>
-        <a id="twitter_link" href="#" style="font-size: 14pt;"></a>
+        <a id="twitter_link" href="#" style="font-size: 16pt;"></a>
+        <span id="donations" style="font-size: 16pt;"></span>
 </div>
 <div class="row" style="margin-top: 15px;">
-    <div class="col-sm-4">
+    <div id="games_panel" class="col-sm-4">
         <a href="/coellection/games" style="text-decoration: none;">
         <div class="panel shadow">
             <div class="panel-heading">
@@ -34,7 +31,7 @@
         </div>
         </a>
     </div>
-    <div class="col-sm-4">
+    <div id="platforms_panel" class="col-sm-4">
         <a href="/coellection/platforms" style="text-decoration: none;">
         <div class="panel shadow">
             <div class="panel-heading">
@@ -52,7 +49,7 @@
         </div>
         </a>
     </div>
-    <div class="col-sm-4">
+    <div id="amiibos_panel" class="col-sm-4">
         <a href="/coellection/amiibos" style="text-decoration: none;">
         <div class="panel shadow">
             <div class="panel-heading">
@@ -71,28 +68,20 @@
         </a>
     </div>
 </div>
-<!-- There's probably a better way to dynamically generate these links -->
-<!-- <script type="text/javascript">
-    function donorOutput(input) {
-        var donor = input;
-        if (donor.startsWith("@")) {
-            var url = "https://twitter.com/" + donor.slice(1);
-            return donor.link(url);
-        };
-        return donor;
-    }
-</script> -->
 <center>
     <h3>Thanks to all who have donated!</h3>
-    {% for donor in view.contributors %}
-    | <script>
-        document.write(donorOutput("{{ donor }}"));
-      </script>
-    {% endfor %}
-    |
+    <div id="contributors">
+        <div id ="donor_list">
+            {% for donor in view.contributors %}
+            | <script>
+                document.write(donorOutput("{{ donor }}"));
+              </script>
+            {% endfor %}
+            |
+        </div>
+    </div>
 </center>
 <script>
-    // If the donor is a twitter handle, this will make a nicely formatted
     populateTopDonor("{{ view.top_donor }}");
 </script>
 <!-- end django extension -->

@@ -95,7 +95,7 @@
     -1px -1px 0 #000,
     1px -1px 0 #000,
     -1px 1px 0 #000,
-    1px 1px 0 #000;  
+    1px 1px 0 #000;
 }
 
 .shadow {
@@ -135,7 +135,7 @@
 
 /* Dark Colors */
 .page-header {
-  
+
   margin-top: 10px;
   padding-bottom: 0px;
   border-bottom: 1px solid #989898;
@@ -151,14 +151,14 @@
     border: 1px solid #989898;
 }
 
-.nav>li>a:focus, 
+.nav>li>a:focus,
 .nav>li>a:hover {
     margin-left: -1px;
     margin-top: -1px;
     margin-bottom: -1px;
     text-decoration: none;
     border: 1px solid #989898;
-    border-radius: 2px; 
+    border-radius: 2px;
     background-color: #191919;
     color: #fff;
 }
@@ -176,7 +176,7 @@
 .panel-heading {
   padding: 5px 10px;
   border-bottom: 1px solid #989898;
-  margin-bottom: -5px; 
+  margin-bottom: -5px;
   font-weight: bold;
   white-space: nowrap;
   overflow: hidden;
@@ -243,4 +243,29 @@
   background-color: #191919;
   border-style: none;
   border-bottom: 1px solid #989898;
+}
+
+#avatar{
+  height: 32px;
+  border-radius: 25px;
+  border: 2px solid #989898;
+  margin-bottom: 5px;"
+}
+
+#contributors{
+  height:48px;
+  margin-top:-20px;
+  width:100%;
+  overflow:hidden;
+  position:relative;
+}
+#donor_list{
+  font-size: 16pt;
+  cursor:pointer;
+  overflow:hidden;
+  position:absolute;
+  left:10px;
+  margin-right:10px;
+  white-space: nowrap;
+  top:10px;
 }
