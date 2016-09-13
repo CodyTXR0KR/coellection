@@ -1,10 +1,19 @@
 {% extends "coellection/header.html" %}
 {% load staticfiles %}
 {% block content %}
+<!-- TODO: Break excessive inline CSS styling into separate file (coellection.css) -->
 <!-- django extension coelection/home.html -->
 <div class="page-header">
-    <h2 style="display: inline;">Top Donor:</h2>
-        <span style="font-size: 14pt;">{{ view.top_donor }} donations</span>
+    <!-- TODO: make this one dynamic (linked) div -->
+    <h2 style="display: inline;">Top Donor : </h2>
+        <span id="top_donor" style="font-size: 14pt;">
+            <img id="avatar"
+                 style="height: 32px;
+                        border-radius: 25px;
+                        border: 2px solid #989898;
+                        margin-bottom: 5px;">
+        </span>
+        <a id="twitter_link" href="#" style="font-size: 14pt;"></a>
 </div>
 <div class="row" style="margin-top: 15px;">
     <div class="col-sm-4">
@@ -63,7 +72,7 @@
     </div>
 </div>
 <!-- There's probably a better way to dynamically generate these links -->
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     function donorOutput(input) {
         var donor = input;
         if (donor.startsWith("@")) {
@@ -72,7 +81,7 @@
         };
         return donor;
     }
-</script>
+</script> -->
 <center>
     <h3>Thanks to all who have donated!</h3>
     {% for donor in view.contributors %}
@@ -82,5 +91,9 @@
     {% endfor %}
     |
 </center>
+<script>
+    // If the donor is a twitter handle, this will make a nicely formatted
+    populateTopDonor("{{ view.top_donor }}");
+</script>
 <!-- end django extension -->
 {% endblock %}
