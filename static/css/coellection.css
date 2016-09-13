@@ -174,9 +174,10 @@
 }
 
 .panel-heading {
-  padding: 5px 10px;
+  padding: 0px 10px;
   border-bottom: 1px solid #989898;
   margin-bottom: -5px;
+  font-size: 28pt;
   font-weight: bold;
   white-space: nowrap;
   overflow: hidden;
@@ -245,11 +246,24 @@
   border-bottom: 1px solid #989898;
 }
 
-#avatar{
+.carousel-image{
+  height: 325px;
+  background-size: cover;
+  margin-top: 5px;
+}
+
+#avatar_sm{
   height: 32px;
   border-radius: 25px;
   border: 2px solid #989898;
-  margin-bottom: 5px;"
+  margin-bottom: 5px;
+}
+
+#avatar_lg{
+  height: 128px;
+  border-radius: 25px;
+  border: 2px solid #989898;
+  margin-bottom: 5px;
 }
 
 #contributors{

@@ -1,5 +1,6 @@
-/* Transform simple database strings to html link elements */
+
 function makeTwitterLink(username) {
+    // Return an html twitter link to the provided username
     var url = "https://twitter.com/" + username.slice(1);
     return username.link(url);
 }
@@ -10,6 +11,7 @@ function getTwitterAvatar(username) {
 }
 
 function donorOutput(donor_name) {
+    // Parse template data to link html if necessary
     if (donor_name.startsWith("@")) {
         return makeTwitterLink(donor_name);
     };
@@ -17,13 +19,13 @@ function donorOutput(donor_name) {
 }
 
 function populateTopDonor(input) {
-
+    // Parse template data to populate top donor div
     var top_donor = input.split(" ");
     var donor_name = top_donor[0];
     var donation_count = top_donor.slice(-1)[0];
 
     if (donor_name.startsWith("@")) {
-        var avatar = document.getElementById("avatar");
+        var avatar = document.getElementById("avatar_sm");
         var link = document.getElementById("twitter_link");
         var donations = document.getElementById("donations");
 
@@ -78,4 +80,7 @@ function marquee(a, b) {
 
 $(document).ready(function() {
     marquee($('#contributors'), $('#donor_list'));
+});
+$('#section_carousel').carousel({
+    interval: 5000
 });
